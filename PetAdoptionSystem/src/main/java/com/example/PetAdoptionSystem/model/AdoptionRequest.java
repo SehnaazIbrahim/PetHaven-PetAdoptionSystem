@@ -1,9 +1,6 @@
 package com.example.PetAdoptionSystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -15,20 +12,25 @@ public class AdoptionRequest {
 
     private LocalDate requestDate;
     private String status;
-    private int userId;
-    private int petId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 
     public AdoptionRequest() {}
 
-    public AdoptionRequest(int id, LocalDate requestDate, String status, int userId, int petId) {
-        this.id = id;
+    public AdoptionRequest(LocalDate requestDate, String status, User user, Pet pet) {
         this.requestDate = requestDate;
         this.status = status;
-        this.userId = userId;
-        this.petId = petId;
+        this.user = user;
+        this.pet = pet;
     }
 
-    // Getters & Setters
+    // ✅ Only use mapped fields
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -38,9 +40,9 @@ public class AdoptionRequest {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
-    public int getPetId() { return petId; }
-    public void setPetId(int petId) { this.petId = petId; }
+    public Pet getPet() { return pet; }
+    public void setPet(Pet pet) { this.pet = pet; }
 }
