@@ -38,4 +38,11 @@ public class AdoptionRequestService {
     public void deleteAdoptionRequest(int id) {
         adoptionRequestRepo.deleteById(id);
     }
+
+    public List<AdoptionRequest> getRequestsByUserEmail(String email) {
+    return adoptionRequestRepo.findByUserEmail(email);
+}
+
+
+
 }

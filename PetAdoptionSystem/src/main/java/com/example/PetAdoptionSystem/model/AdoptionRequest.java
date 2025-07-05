@@ -3,6 +3,8 @@ package com.example.PetAdoptionSystem.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class AdoptionRequest {
 
@@ -13,12 +15,14 @@ public class AdoptionRequest {
     private LocalDate requestDate;
     private String status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore  
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pet_id")
+    @JsonIgnore  
     private Pet pet;
 
     public AdoptionRequest() {}

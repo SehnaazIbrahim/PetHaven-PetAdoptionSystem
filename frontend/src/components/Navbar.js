@@ -18,7 +18,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
-        {isLoggedIn && <Link to="/adoption-requests">Adoption Requests</Link>}
+
         {isLoggedIn ? (
           <>
             <Link to={localStorage.getItem("role") === "ADMIN" ? "/admin-dashboard" : "/user-dashboard"}>
@@ -38,4 +38,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

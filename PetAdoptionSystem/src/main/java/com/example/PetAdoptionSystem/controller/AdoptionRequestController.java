@@ -1,6 +1,9 @@
 package com.example.PetAdoptionSystem.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,4 +45,21 @@ public class AdoptionRequestController {
         adoptionRequestService.deleteAdoptionRequest(id);
         return "Adoption Request deleted successfully with id: " + id;
     }
+
+    @GetMapping("/user/requests")
+public List<Map<String, Object>> getRequestsByUser(@RequestParam String email) {
+    List<AdoptionRequest> requests = adoptionRequestService.getRequestsByUserEmail(email);
+
+    List<Map<String, Object>> response = new ArrayList<>();
+    for (AdoptionRequest req : requests) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("petName", req.getPet().getName());
+        map.put("requestedDate", req.getRequestDate());
+        map.put("status", req.getStatus());
+        response.add(map);
+    }
+
+    return response;
+}
+
 }

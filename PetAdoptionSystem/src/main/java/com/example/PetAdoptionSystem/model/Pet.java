@@ -3,6 +3,8 @@ package com.example.PetAdoptionSystem.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pet {
 
@@ -60,6 +62,8 @@ public class Pet {
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    @JsonIgnore
     public List<AdoptionRequest> getRequests() { return requests; }
     public void setRequests(List<AdoptionRequest> requests) { this.requests = requests; }
 }

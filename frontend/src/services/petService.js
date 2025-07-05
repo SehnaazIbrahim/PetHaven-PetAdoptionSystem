@@ -14,10 +14,15 @@ export const deletePet = (id) => axios.delete(`${API_URL}/${id}`);
 
 
 export const adoptPet = (petId) => {
-  const token = localStorage.getItem('token');
-  return axios.post(`${API_URL}/adopt/${petId}`, {}, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+  const user = JSON.parse(localStorage.getItem('user'));
+  const email = user?.email;
+
+  if (!email) {
+    throw new Error('User email not found in localStorage.');
+  }
+
+  return axios.post(`http://localhost:8080/pets/adopt/${petId}`, null, {
+    params: { userEmail: email }
   });
 };
+

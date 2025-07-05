@@ -17,6 +17,8 @@ const LoginPage = () => {
       const res = await login(data);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
+        localStorage.setItem('user', JSON.stringify(res.data)); // 🔥 This line is missing
+        
       alert('Login successful!');
       if (res.data.role === 'ADMIN') navigate('/admin-dashboard');
       else navigate('/user-dashboard');

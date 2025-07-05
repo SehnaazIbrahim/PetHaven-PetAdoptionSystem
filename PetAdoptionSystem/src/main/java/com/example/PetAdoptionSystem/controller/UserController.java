@@ -1,6 +1,8 @@
 package com.example.PetAdoptionSystem.controller;
 
+import com.example.PetAdoptionSystem.model.AdoptionRequest;
 import com.example.PetAdoptionSystem.model.User;
+import com.example.PetAdoptionSystem.service.AdoptionRequestService;
 import com.example.PetAdoptionSystem.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    AdoptionRequestService adoptionRequestService;
 
     
     @GetMapping("/profile/{id}")
@@ -62,6 +67,19 @@ public class UserController {
         userService.deleteUser(id);
         return "User deleted successfully with id: " + id;
     }
+
+
+    @GetMapping("/profile")
+public User getProfileByEmail(@RequestParam String email) {
+    return userService.getUserByEmail(email); // You need to implement this method
+}
+
+    // In UserController.java
+    @GetMapping("/{email}/requests")
+    public List<AdoptionRequest> getUserRequests(@PathVariable String email) {
+        return adoptionRequestService.getRequestsByUserEmail(email);
+}
+
 
     
 }

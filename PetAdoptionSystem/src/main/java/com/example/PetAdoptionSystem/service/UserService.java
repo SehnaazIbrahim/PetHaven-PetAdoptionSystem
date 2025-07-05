@@ -93,7 +93,7 @@ public Map<String, Object> getUserProfileWithPets(int id) {
 }
 
 
-    // ✅ Update user (admin only)
+    // Update user (admin only)
     public User updateUser(int id, User updatedUser) {
         User existingUser = userRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
@@ -107,9 +107,15 @@ public Map<String, Object> getUserProfileWithPets(int id) {
         return userRepo.save(existingUser);
     }
 
-    // ✅ Delete user (admin only)
     public void deleteUser(int id) {
         userRepo.deleteById(id);
     }
+
+  public User getUserByEmail(String email) {
+    return userRepo.findByEmail(email)
+        .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+}
+
+
 }
 

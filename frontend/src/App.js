@@ -5,6 +5,10 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import AboutPage from './pages/AboutPage/AboutPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+
+
 
 function App() {
   return (
@@ -15,6 +19,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

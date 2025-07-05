@@ -11,4 +11,6 @@ import com.example.PetAdoptionSystem.model.AdoptionRequest;
 public interface AdoptionRequestRepo extends JpaRepository<AdoptionRequest,Integer> {
   List<AdoptionRequest> findByUserId(int userId);
   List<AdoptionRequest> findByPetId(int petId);
+  List<AdoptionRequest> findByUserEmail(String email);
+
 }
